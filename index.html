@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <title>SUS 9기 D-Day 계산기</title>
+        <style>
+            * {
+                color: #333333;
+            }
+            p {
+                margin-bottom: 1px;
+            }
+            .photos {
+                margin-top: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #hojin {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-right: 30px;
+            }
+            #rocket {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 50%;
+                margin-left: 30px;
+            }
+            #heart {
+                width: 50px;
+                height: 50px;
+            }
+            .gray {
+                color: #a0a0a0;
+            }
+            .special-day {
+                display: flex;
+                justify-content: space-between;
+            }
+            .title {
+                display: flex;
+                align-items: center;
+            }
+            .days-left {
+                text-align: right;
+            }
+            .date {
+                text-align: right;
+                color: #a0a0a0;
+            }
+        </style>
+    </head>
+    <body class="container">
+        <section class="photos">
+            <img id="hojin" src="myPicture.png" alt="hojin" />
+            <img id="heart" src="heart.png" alt="heart" />
+            <img id="rocket" src="rocket.png" alt="rocket" />
+        </section>
+        <div class="container d-flex flex-column justify-content-center align-items-center mt-3">
+            <h3>SUS 8기 D-Day 계산기</h3>
+            <h3 id="love">0일째</h3>
+            <h4 class="date">2024.07.05</h4>
+        </div>
+        <hr />
+        <section class="special-day">
+            <h3 class="title">Finding Day</h3>
+            <div class="date-box">
+                <p id="findingDay" class="days-left">0일 남음</p>
+                <p class="date">2024.09.05</p>
+            </div>
+        </section>
+        <hr />
+        <section class="special-day">
+            <h3 class="title">Rocket Day</h3>
+            <div class="date-box">
+                <p id="rocketDay" class="days-left">0일 남음</p>
+                <p id="rocketDayDate" class="date">2024.10.14</p>
+            </div>
+        </section>
+        <hr />
+        <section class="special-day">
+            <h3 class="title">SUS 8기 시작 1000일 후 목표!</h3>
+            <div class="date-box">
+                <p id="thousandDaysLeft" class="days-left"></p>
+                <p id="thousandDayDate" class="date"></p>
+            </div>
+        </section>
+        <hr />
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.slim.js"
+            integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            var now = new Date();
+            var start = new Date('2024-07-05');
+
+            var timeDiff = now.getTime() - start.getTime();
+            var day = Math.floor(timeDiff / (1000 * 60 * 60 * 24) + 1);
+            $('#love').text(day + '일째');
+
+            var findingDay = new Date('2024-09-05');
+            var timeDiff2 = findingDay.getTime() - now.getTime();
+            var day2 = Math.floor(timeDiff2 / (1000 * 60 * 60 * 24) + 1);
+            $('#findingDay').text(day2 + '일 남음');
+
+            var rocketDay = new Date('2024-10-14');
+            var timeDiff3 = rocketDay.getTime() - now.getTime();
+            var day3 = Math.floor(timeDiff3 / (1000 * 60 * 60 * 24) + 1);
+            $('#rocketDay').text(day3 + '일 남음');
+
+            // 1000일 후 날짜 계산
+            var thousandDaysLater = new Date(start.getTime() + 1000 * (1000 * 60 * 60 * 24));
+            var timeDiff4 = thousandDaysLater.getTime() - now.getTime();
+            var day4 = Math.floor(timeDiff4 / (1000 * 60 * 60 * 24) + 1);
+
+            var thousandDaysDate =
+                thousandDaysLater.getFullYear() +
+                '.' +
+                ('0' + (thousandDaysLater.getMonth() + 1)).slice(-2) +
+                '.' +
+                ('0' + thousandDaysLater.getDate()).slice(-2);
+
+            $('#thousandDaysLeft').text(day4 + '일 남음');
+            $('#thousandDayDate').text(thousandDaysDate);
+        </script>
+    </body>
+</html>
